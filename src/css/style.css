@@ -1,0 +1,74 @@
+body.claro {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    color: #1A1A1A;
+    line-height: 1.6;
+}
+
+body.escuro {
+    background-color: #121212;
+    color: #F0F0F0;
+}
+
+.site-header, footer {
+    background-color: #1A1A1A;
+    color: #FFFFFF;
+}
+
+.logo.link {
+    color: #C6A756;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.nav-list a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.nav-list a:hover {
+    color: #D8B768;
+}
+
+.botao-tema {
+    border: 1px solid #C6A756;
+    background: transparent;
+    color: #C6A756;
+    padding: 0.4rem 0.7rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.botao-tema:hover{
+    background-color: #C6A756;
+    color: #1A1A1A;
+}
+
+.bemvindo-section {
+    padding: 2rem 1rem;
+    text-align: center;
+    background-color: #F0F0F0;
+    border-radius: 8px;
+}
+
+.titulo-principal {
+    font-size: 2rem;
+    color: #1A1A1A;
+}
+
+.descricao {
+    font-size: 1.1rem;
+    color: #666666;
+}
+
+.card {
+    background-color: #FFFFFF;
+    border: 1px solid #F0F0F0;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+body.escuro .card {
+    background-color: #1A1A1A;
+    border-color: #333333;
+}
