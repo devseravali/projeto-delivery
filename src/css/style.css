@@ -1,100 +1,118 @@
-body.claro {
+body {
+    margin: 0;
     font-family: 'Poppins', sans-serif;
-    background-color: #ffffff;
-    color: #1A1A1A;
-    line-height: 1.6;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    transition: background-color 0.3s, color 0.3s;
 }
 
-body.escuro {
-    background-color: #121212;
-    color: #F0F0F0;
-}
-
-.site-header, footer {
-    background-color: #1A1A1A;
-    color: #FFFFFF;
-}
-
-.logo.link {
-    color: #C6A756;
-    text-decoration: none;
-    font-weight: 700;
-}
-
-.nav-list a {
-    color: #FFFFFF;
-    text-decoration: none;
-}
-
-.nav-list a:hover {
-    color: #D8B768;
-}
-
-.botao-tema {
-    border: 1px solid #C6A756;
-    background: transparent;
-    color: #C6A756;
-    padding: 0.4rem 0.7rem;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.botao-tema:hover{
-    background-color: #C6A756;
-    color: #1A1A1A;
-}
-
-.bemvindo-section {
-    padding: 2rem 1rem;
+.site-header,
+.site-footer {
+    background-color: var(--cor-primaria);
+    padding: 1rem;
     text-align: center;
-    background-color: #F0F0F0;
-    border-radius: 8px;
+}
+
+.logo-link {
+    font-size: 1.5rem;
+    color: var(--cor-secundaria);
+    font-weight: 900;
+}
+
+.menu-list {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.5rem;
+}
+
+.menu-list a {
+    color: var(--cor-link);
+    font-weight: 600;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.menu-list a:hover {
+    background-color: var(--cor-hover-bg);
+    color: var(--cor-hover-texto);
+}
+
+.menu-list button {
+    color: var(--cor-link);
+    font-size: 1.2rem;
+    background-color: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s;
+    font-weight: 500;
+}
+
+.menu-list button:hover {
+    color: var(--cor-hover-bg);
+}
+
+#botao-tema {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--cor-link);
+    border-radius: 50%;
+    background-color: transparent;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+#botao-tema::before {
+    content: '';
+    display: block;
+    width: 60%;
+    height: 60%;
+    background-color: var(--cor-link);
+    border-radius: 50%;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+body.claro #botao-tema::before {
+    box-shadow: 
+        0 -8px 0 -2px var(--cor-link), 
+        0 8px 0 -2px var(--cor-link), 
+        8px 0 0 -2px var(--cor-link),  
+        -8px 0 0 -2px var(--cor-link), 
+        5.5px 5.5px 0 -2px var(--cor-link), 
+        -5.5px 5.5px 0 -2px var(--cor-link),
+        5.5px -5.5px 0 -2px var(--cor-link),
+        -5.5px -5.5px 0 -2px var(--cor-link);
+}
+
+body.escuro #botao-tema::before {
+    background-color: var(--cor-fundo);
+    box-shadow: 0 -8px 0 -2px var(--cor-fundo), 
+    0 8px 0 -2px var(--cor-fundo), 
+    8px 0 0 -2px var(--cor-fundo),  
+    -8px 0 0 -2px var(--cor-fundo), 
+    5.5px 5.5px 0 -2px var(--cor-fundo), 
+    -5.5px 5.5px 0 -2px var(--cor-fundo),
+    5.5px -5.5px 0 -2px var(--cor-fundo),
+    -5.5px -5.5px 0 -2px var(--cor-fundo);
+}
+
+.conteudo-principal {
+    padding: 1rem;
+    text-align: center;
 }
 
 .titulo-principal {
     font-size: 2rem;
-    color: #1A1A1A;
+    color: var(--cor-primaria);
+    font-weight: 600;
 }
 
 .descricao {
-    font-size: 1.1rem;
-    color: #666666;
-}
-
-.card {
-    background-color: #FFFFFF;
-    border: 1px solid #F0F0F0;
-    padding: 1rem;
-    border-radius: 8px;
-    text-align: center;
-}
-
-.card img {
-    max-width: 100%;
-    border-radius: 100%;
-}
-
-.card h3 {
-    margin: 0.5rem 0;
-}
-
-.card button {
-    background-color: #C6A756;
-    color: #FFFFFF;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-body.escuro .card {
-    background-color: #1A1A1A;
-    border-color: #333333;
-}
-
-.grid-cardapio {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, min-max(220px, 1fr));
-    gap: 1rem;
-    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 400;
 }

@@ -1,0 +1,23 @@
+:root {
+  --cor-secundaria: #d4af37; 
+}
+
+/* Claro */
+body.claro {
+  --cor-fundo: #f4f4f4;
+  --cor-texto: #222;
+  --cor-primaria: #000;
+  --cor-link: var(--cor-secundaria);
+  --cor-hover-bg: var(--cor-secundaria);
+  --cor-hover-texto: #fff;
+}
+
+/* Escuro */
+body.escuro {
+  --cor-fundo: #000;
+  --cor-texto: #fff;
+  --cor-primaria: #fff;
+  --cor-link: var(--cor-secundaria);
+  --cor-hover-bg: var(--cor-secundaria);
+  --cor-hover-texto: #000;
+}
