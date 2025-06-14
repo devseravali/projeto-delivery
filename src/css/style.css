@@ -66,9 +66,35 @@ body.escuro {
     border: 1px solid #F0F0F0;
     padding: 1rem;
     border-radius: 8px;
+    text-align: center;
+}
+
+.card img {
+    max-width: 100%;
+    border-radius: 100%;
+}
+
+.card h3 {
+    margin: 0.5rem 0;
+}
+
+.card button {
+    background-color: #C6A756;
+    color: #FFFFFF;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 body.escuro .card {
     background-color: #1A1A1A;
     border-color: #333333;
+}
+
+.grid-cardapio {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, min-max(220px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
 }

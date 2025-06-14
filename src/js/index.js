@@ -1,9 +1,19 @@
 const botaoTema = document.getElementById("botao-tema");
 
+const temaSalvo = localStorage("tema");
+if (temaSalvo) {
+    document.body.classList.add(temaSalvo);
+    botaoTema.textContent = temaSalvo === "escuro" ? "☀️" : "🌙";
+}
+
 botaoTema.addEventListener("click", () => {
-    document.body.toggle("escuro");
-    document.body.toggle("claro");
-    botaoTema.textContent = document.body.classList.contains("escuro") ? "☀️" : "🌙";
+    document.body.classList.toggle("escuro");
+    document.body.classList.toggle("claro");
+
+    const temaAtual = document.body.classList.contains("escuro") ? "escuro" : "claro";
+
+    botaoTema.textContent = temaAtual === "escuro" ? "☀️" : "🌙";
+    localStorage.setItem("tema", temaAtual);
 });
 
 function atualizarContadorCarrinho() {
