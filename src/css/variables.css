@@ -10,6 +10,7 @@ body.claro {
   --cor-link: var(--cor-secundaria);
   --cor-hover-bg: var(--cor-secundaria);
   --cor-hover-texto: #fff;
+  --cor-small: #ffffff;
 }
 
 /* Escuro */
@@ -20,4 +21,5 @@ body.escuro {
   --cor-link: var(--cor-secundaria);
   --cor-hover-bg: var(--cor-secundaria);
   --cor-hover-texto: #000;
+  --cor-small: #000000;
 }
