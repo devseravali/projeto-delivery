@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio</title>
+
+    <link rel="stylesheet" href="src/css/reset.css">
+    <link rel="stylesheet" href="src/css/variables.css">
+    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="src/css/responsivo.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="claro">
+    <header class="site-header">
+        <div class="logo">
+            <a href="index.html" class="logo-link">Rainha da Feijoada</a>
+        </div>
+
+        <nav>
+            <ul class="menu-list">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="cardapio.html">Cardápio</a></li>
+            <li><a href="carrinho.html">Carrinho (<span id="contador-carrinho">0</span>)</a></li>
+            <li><button id="botao-tema" aria-label="Alterar tema"></button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="conteudo-principal">
+        <section class="filtros">
+            <select id="filtro-tipo">
+                <option value="">Todos</option>
+                <option value="os-mais-pedidos">Os mais pedidos</option>
+                <option value="feijoada-magra">Feijoada Magra</option>
+                <option value="almoco-bom-barato">Almoço Bom e Barato</option>
+                <option value="parmegiana">Parmegiana</option>
+                <option value="bebidas">Bebidas</option>
+            </select>
+
+            <input type="range" id="filtro-preco" min="0" max="175" step="5">
+            <span id="valor-preco">R$175,00</span>
+        </section>
+
+        <section id="grid-produtos" class="grid-produtos">
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <small>&copy; 2025 Rainha da Feijoada</small>
+    </footer>
+
+    <script src="src/js/cardapio.js"></script>
+</body>
+
+</html>
