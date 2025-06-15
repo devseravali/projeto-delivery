@@ -26,10 +26,10 @@
 
         <nav>
             <ul class="menu-list">
-            <li><a href="index.html">Início</a></li>
-            <li><a href="cardapio.html">Cardápio</a></li>
-            <li><a href="carrinho.html">Carrinho (<span id="contador-carrinho">0</span>)</a></li>
-            <li><button id="botao-tema" aria-label="Alterar tema"></button></li>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="cardapio.html">Cardápio</a></li>
+                <li><a href="carrinho.html">Carrinho (<span id="contador-carrinho">0</span>)</a></li>
+                <li><button id="botao-tema" aria-label="Alterar tema"></button></li>
             </ul>
         </nav>
     </header>
@@ -42,6 +42,9 @@
                 <option value="feijoada-magra">Feijoada Magra</option>
                 <option value="almoco-bom-barato">Almoço Bom e Barato</option>
                 <option value="parmegiana">Parmegiana</option>
+                <option value="adicionalPromocional">Adicional Promocional</option>
+                <option value="adicionalBebidas">Adicional Bebidas</option>
+                <option value="adicionalTalheres">Adicional Talheres</option>
             </select>
 
             <input type="range" id="filtro-preco" min="0" max="175" step="5">
@@ -56,7 +59,7 @@
         <small>&copy; 2025 Rainha da Feijoada</small>
     </footer>
 
-    <script src="src/js/cardapio.js"></script>
+    <script type="module" src="src/js/cardapio.js"></script>
 </body>
 
 </html>
