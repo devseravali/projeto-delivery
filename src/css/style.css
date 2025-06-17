@@ -42,10 +42,11 @@ body {
 small { 
     color: var(--cor-small);
 }
+
 .menu-list button {
     color: var(--cor-link);
     font-size: 1.2rem;
-    background-color: none;
+    background: none; /* corrigido: era background-color: none */
     border: none;
     cursor: pointer;
     transition: color 0.3s;
@@ -61,7 +62,7 @@ small {
     height: 40px;
     border: 2px solid var(--cor-link);
     border-radius: 50%;
-    background-color: transparent;
+    background: transparent; /* corrigido: era background-color: transparent */
     cursor: pointer;
     position: relative;
     transition: background-color 0.3s, border-color 0.3s;
@@ -94,14 +95,15 @@ body.claro #botao-tema::before {
 
 body.escuro #botao-tema::before {
     background-color: var(--cor-fundo);
-    box-shadow: 0 -8px 0 -2px var(--cor-fundo), 
-    0 8px 0 -2px var(--cor-fundo), 
-    8px 0 0 -2px var(--cor-fundo),  
-    -8px 0 0 -2px var(--cor-fundo), 
-    5.5px 5.5px 0 -2px var(--cor-fundo), 
-    -5.5px 5.5px 0 -2px var(--cor-fundo),
-    5.5px -5.5px 0 -2px var(--cor-fundo),
-    -5.5px -5.5px 0 -2px var(--cor-fundo);
+    box-shadow: 
+        0 -8px 0 -2px var(--cor-fundo), 
+        0 8px 0 -2px var(--cor-fundo), 
+        8px 0 0 -2px var(--cor-fundo),  
+        -8px 0 0 -2px var(--cor-fundo), 
+        5.5px 5.5px 0 -2px var(--cor-fundo), 
+        -5.5px 5.5px 0 -2px var(--cor-fundo),
+        5.5px -5.5px 0 -2px var(--cor-fundo),
+        -5.5px -5.5px 0 -2px var(--cor-fundo);
 }
 
 .conteudo-principal {
@@ -116,7 +118,7 @@ body.escuro #botao-tema::before {
 }
 
 .descricao {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: 400;
 }
 
@@ -138,4 +140,35 @@ body.escuro #botao-tema::before {
 .produto-imagem {
     max-width: 100%;
     border-radius: 4px;
+}
+
+
+.adicionais-grupo {
+    margin-top: 10px;
+    background: var(--cor-fundo);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.adicional-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+#total {
+    font-weight: 500;
+    font-size: 1.2rem;
+    text-align: right;
+}
+
+.btn-finalizar {
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
 }
