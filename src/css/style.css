@@ -46,7 +46,7 @@ small {
 .menu-list button {
     color: var(--cor-link);
     font-size: 1.2rem;
-    background: none; /* corrigido: era background-color: none */
+    background: none; 
     border: none;
     cursor: pointer;
     transition: color 0.3s;
@@ -62,7 +62,7 @@ small {
     height: 40px;
     border: 2px solid var(--cor-link);
     border-radius: 50%;
-    background: transparent; /* corrigido: era background-color: transparent */
+    background: transparent; 
     cursor: pointer;
     position: relative;
     transition: background-color 0.3s, border-color 0.3s;
@@ -166,9 +166,49 @@ body.escuro #botao-tema::before {
 
 .btn-finalizar {
     background-color: var(--cor-primaria);
-    color: var(--cor-texto);
+    color: var(--cor-small);
     padding: 10px 20px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    margin: 1rem;
+}
+
+.btn-finalizar:hover {
+    background-color: var(--cor-hover-bg);
+    color: var(--cor-hover-texto);
+}
+
+#carrinho-itens {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.carrinho-item {
+    border: 1px solid var(--cor-secundaria);
+    border-radius: 8px;
+    padding: 1rem;
+    background: var(--cor-fundo);
+}
+
+.carrinho-item p {
+    margin:  4px 0;
+}
+
+.carrinho-quantidade {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.carrinho-quantidade button {
+    padding:  0.2rem 0.6rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#resumo {
+    text-align: right;
+    margin-top: 1rem;
 }
