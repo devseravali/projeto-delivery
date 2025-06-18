@@ -5,14 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrinho</title>
+
     <link rel="stylesheet" href="src/css/reset.css">
     <link rel="stylesheet" href="src/css/variables.css">
-    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="src/css/style.css?v=1">
     <link rel="stylesheet" href="src/css/responsivo.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap">
 </head>
 
 <body class="claro">
@@ -22,7 +23,7 @@
             <ul class="menu-list">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="cardapio.html">Cardápio</a></li>
-                <li><a href="carrinho.html">Carrinho (<span id="contador-carrinho">0</span>)</a></li>
+                <li><a href="carrinho.html">Carrinho(<span id="contador-carrinho">0</span>)</a></li>
                 <li><button id="botao-tema"></button></li>
             </ul>
         </nav>
@@ -32,10 +33,17 @@
         <h1 class="titulo-principal">Seu Carrinho</h1>
         <div id="carrinho-itens" class="grid-produtos"></div>
         <div id="resumo">
-            <p>Subtotal: <span id="subtotal">R$0,00</span></p>
-            <p>Taxa de entrega: <span id="taxa">R$5,00</span></p>
-            <p><strong>Total: <span id="total">R$0,00</span></strong></p>
-            <button class="btn-finalizar" id="btn-finalizar">Finalizar Pedido</button>
+            <div id="container-produtos">
+                <p>Subtotal: <span id="subtotal">R$0,00</span></p>
+                <p>Taxa de entrega: <span id="taxa">R$0,00</span></p>
+                <p><strong>Total: <span id="total">R$0,00</span></strong></p>
+
+                <label for="bairro">Informe seu bairro:</label>
+                <input type="text" id="bairro" placeholder="Digite o bairro">
+                <button id="btn-calcular-taxa">Calcular Taxa de Entrega</button>
+
+                <button class="btn-finalizar" id="btn-finalizar">Finalizar Pedido</button>
+            </div>
         </div>
     </main>
 
@@ -43,7 +51,7 @@
         <small>&copy; 2025 Rainha da Feijoada</small>
     </footer>
 
-    <script type= "module" src="src/js/carrinho.js"></script>
+    <script type="module" src="src/js/carrinho.js"></script>
 </body>
 
 </html>
