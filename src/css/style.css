@@ -212,3 +212,16 @@ body.escuro #botao-tema::before {
     text-align: right;
     margin-top: 1rem;
 }
+
+.mensagem {
+    display: none;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.mensagem.mostrar {
+    display: block;
+}
