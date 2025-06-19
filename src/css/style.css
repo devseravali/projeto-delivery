@@ -225,3 +225,45 @@ body.escuro #botao-tema::before {
 .mensagem.mostrar {
     display: block;
 }
+
+.none {
+    display: none;
+}
+
+.barra-progresso {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.barra-progresso .etapa {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    padding: 0.5rem;
+    border-bottom: 3px solid var(--cor-secundaria);
+    color: var(--cor-secundaria);
+}
+
+.barra-progresso .etapa.ativo {
+    font-weight: 800;
+    border-color: var(--cor-primaria);
+    color: var(--cor-primaria);
+}
+
+.barra-progresso .etapa::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background-color: var(--cor-secundaria);
+    border-radius: 50%;
+    transform: translateX(-50%);
+}
+
+.barra-progresso .etapa.ativo::after{
+    background: var(--cor-primaria);
+}
