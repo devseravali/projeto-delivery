@@ -306,7 +306,8 @@ form {
     margin-top: 0.5rem;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="password"] {
     padding: 0.5rem;
     border: 1px solid var(--cor-secundaria);
     border-radius: 4px;
@@ -337,4 +338,8 @@ input[type="text"] {
 
 .mensagem.mostrar {
     display: block;
+}
+
+#area-motoboy {
+    display:none;
 }

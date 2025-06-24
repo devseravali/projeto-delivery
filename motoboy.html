@@ -1,59 +1,76 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tela do Motoboy</title>
 
-  <link rel="stylesheet" href="src/css/reset.css" />
-  <link rel="stylesheet" href="src/css/variables.css" />
-  <link rel="stylesheet" href="src/css/style.css?v=1" />
-  <link rel="stylesheet" href="src/css/responsivo.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" />
+    <link rel="stylesheet" href="src/css/reset.css" />
+    <link rel="stylesheet" href="src/css/variables.css" />
+    <link rel="stylesheet" href="src/css/style.css?v=1" />
+    <link rel="stylesheet" href="src/css/responsivo.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" />
 </head>
+
 <body class="claro">
     <header class="site-header">
-    <div class="logo">
-        <a href="index.html" class="logo-link">Rainha da Feijoada</a>
-    </div>
+        <div class="logo">
+            <a href="index.html" class="logo-link">Rainha da Feijoada</a>
+        </div>
     </header>
 
-<main class="conteudo-principal">
-    <section>
-        <h1>Motoboy</h1>
+    <main class="conteudo-principal">
+        <section>
+            <h1>Motoboy</h1>
 
-        <div>
-            <h2>Status</h2>
-            <button id="btn-online">Online</button>
-            <button id="btn-offline">Offline</button>
-            <p id="status-atual">Status: Offline</p>
-        </div>
+            <div>
+                <h2>Faça o Login</h2>
+                <form id="form-login">
+                    <label for="input-nome-motoboy">Nome:</label>
+                    <input type="text" id="input-nome-motoboy" required />
+                    <label for="input-senha-motoboy">Senha:</label>
+                    <input type="password" id="input-senha-motoboy" required />
+                    <button type="submit">Entrar</button>
+                </form>
+                <p id="nome-motoboy-exibido"></p>
+            </div>
 
-        <div>
-            <h2>Pedidos</h2>
-            <ul class="lista-pedidos">
-            </ul>
-        </div>
+            <div id="area-motoboy">
+                <div>
+                    <h2>Status</h2>
+                    <button id="btn-online">Online</button>
+                    <button id="btn-offline">Offline</button>
+                    <p id="status-atual">Status: Offline</p>
+                </div>
 
-        <div>
-            <h2>Confirmar Entrega</h2>
-            <form id="form-pin">
-                <label for="input-pin">Digite o PIN do Cliente:</label>
-                <input type="text" id="input-id" required>
-                <button type="submit">Confirmar</button>
-            </form>
-            <p class="mensagem" id="mensagem-pin"></p>
-        </div>
-    </section>
-</main>
+                <div>
+                    <h2>Pedidos</h2>
+                    <ul class="lista-pedidos"></ul>
+                </div>
 
-<footer class="site-footer">
-    <small>&copy; 2025 Rainha da Feijoada</small>
-</footer>
+                <div>
+                    <h2>Confirmar Entrega</h2>
+                    <form id="form-pin">
+                        <label for="input-pin">Digite o PIN do Cliente:</label>
+                        <input type="text" id="input-id" required />
+                        <button type="submit">Confirmar</button>
+                    </form>
+                    <p class="mensagem" id="mensagem-pin"></p>
+                </div>
+            </div>
+        </section>
+    </main>
 
-<script src="src/js/motoboy.js"></script>
+    <footer class="site-footer">
+        <small>&copy; 2025 Rainha da Feijoada</small>
+    </footer>
+
+    <script src="src/js/motoboy.js"></script>
 </body>
+
 </html>
