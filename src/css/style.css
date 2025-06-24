@@ -39,14 +39,14 @@ body {
     color: var(--cor-hover-texto);
 }
 
-small { 
+small {
     color: var(--cor-small);
 }
 
 .menu-list button {
     color: var(--cor-link);
     font-size: 1.2rem;
-    background: none; 
+    background: none;
     border: none;
     cursor: pointer;
     transition: color 0.3s;
@@ -62,7 +62,7 @@ small {
     height: 40px;
     border: 2px solid var(--cor-link);
     border-radius: 50%;
-    background: transparent; 
+    background: transparent;
     cursor: pointer;
     position: relative;
     transition: background-color 0.3s, border-color 0.3s;
@@ -82,12 +82,12 @@ small {
 }
 
 body.claro #botao-tema::before {
-    box-shadow: 
-        0 -8px 0 -2px var(--cor-link), 
-        0 8px 0 -2px var(--cor-link), 
-        8px 0 0 -2px var(--cor-link),  
-        -8px 0 0 -2px var(--cor-link), 
-        5.5px 5.5px 0 -2px var(--cor-link), 
+    box-shadow:
+        0 -8px 0 -2px var(--cor-link),
+        0 8px 0 -2px var(--cor-link),
+        8px 0 0 -2px var(--cor-link),
+        -8px 0 0 -2px var(--cor-link),
+        5.5px 5.5px 0 -2px var(--cor-link),
         -5.5px 5.5px 0 -2px var(--cor-link),
         5.5px -5.5px 0 -2px var(--cor-link),
         -5.5px -5.5px 0 -2px var(--cor-link);
@@ -95,12 +95,12 @@ body.claro #botao-tema::before {
 
 body.escuro #botao-tema::before {
     background-color: var(--cor-fundo);
-    box-shadow: 
-        0 -8px 0 -2px var(--cor-fundo), 
-        0 8px 0 -2px var(--cor-fundo), 
-        8px 0 0 -2px var(--cor-fundo),  
-        -8px 0 0 -2px var(--cor-fundo), 
-        5.5px 5.5px 0 -2px var(--cor-fundo), 
+    box-shadow:
+        0 -8px 0 -2px var(--cor-fundo),
+        0 8px 0 -2px var(--cor-fundo),
+        8px 0 0 -2px var(--cor-fundo),
+        -8px 0 0 -2px var(--cor-fundo),
+        5.5px 5.5px 0 -2px var(--cor-fundo),
         -5.5px 5.5px 0 -2px var(--cor-fundo),
         5.5px -5.5px 0 -2px var(--cor-fundo),
         -5.5px -5.5px 0 -2px var(--cor-fundo);
@@ -193,7 +193,7 @@ body.escuro #botao-tema::before {
 }
 
 .carrinho-item p {
-    margin:  4px 0;
+    margin: 4px 0;
 }
 
 .carrinho-quantidade {
@@ -203,7 +203,7 @@ body.escuro #botao-tema::before {
 }
 
 .carrinho-quantidade button {
-    padding:  0.2rem 0.6rem;
+    padding: 0.2rem 0.6rem;
     font-size: 1rem;
     cursor: pointer;
 }
@@ -264,7 +264,7 @@ body.escuro #botao-tema::before {
     transform: translateX(-50%);
 }
 
-.barra-progresso .etapa.ativo::after{
+.barra-progresso .etapa.ativo::after {
     background: var(--cor-primaria);
 }
 
@@ -302,29 +302,28 @@ button:hover {
 
 form {
     display: flex;
-    flex-direction: column;
     gap: 0.5rem;
     margin-top: 0.5rem;
 }
 
-input[type="text"]{
+input[type="text"] {
     padding: 0.5rem;
     border: 1px solid var(--cor-secundaria);
     border-radius: 4px;
 }
 
 .lista-pedidos {
-    padding: 0;
-    margin: 0.5rem 0;
+    margin: 0.5rem;
 }
 
 .lista-pedidos li {
     border: 1px solid var(--cor-secundaria);
-    border-radius: 6px;
     padding: 0.5rem;
+    border-radius: 6px;
     margin-bottom: 0.5rem;
     background-color: var(--cor-fundo);
 }
+
 .mensagem {
     display: none;
     padding: 0.5rem;
