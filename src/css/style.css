@@ -267,3 +267,75 @@ body.escuro #botao-tema::before {
 .barra-progresso .etapa.ativo::after{
     background: var(--cor-primaria);
 }
+
+h1 {
+    font-size: 2rem;
+    color: var(--cor-primaria);
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 1.4rem;
+    color: var(--cor-secundaria);
+}
+
+button {
+    background-color: var(--cor-primaria);
+    color: var(--cor-small);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 0.3rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+    background-color: var(--cor-hover-bg);
+    color: var(--cor-hover-texto);
+}
+
+#status-atual {
+    font-size: 1.2rem;
+    color: var(--cor-primaria);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+input[type="text"]{
+    padding: 0.5rem;
+    border: 1px solid var(--cor-secundaria);
+    border-radius: 4px;
+}
+
+.lista-pedidos {
+    padding: 0;
+    margin: 0.5rem 0;
+}
+
+.lista-pedidos li {
+    border: 1px solid var(--cor-secundaria);
+    border-radius: 6px;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    background-color: var(--cor-fundo);
+}
+.mensagem {
+    display: none;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 4px;
+    background-color: var(--cor-hover-bg);
+    color: var(--cor-hover-texto);
+    text-align: center;
+    font-weight: 500;
+}
+
+.mensagem.mostrar {
+    display: block;
+}
