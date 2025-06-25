@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const bairroDigitado = bairroInput.value.trim().toLowerCase();
 
         if (taxaPorBairro.hasOwnProperty(bairroDigitado)) {
-            taxaEntrega = taxaPorBairro[bairroDigitado]; // Corrigido aqui
+            taxaEntrega = taxaPorBairro[bairroDigitado];
             exibirMensagem(`Taxa de entrega: R$ ${taxaEntrega.toFixed(2)}`, '#d4edda', '#155724');
         } else {
             taxaEntrega = 0;
@@ -126,12 +126,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     btnFinalizar.addEventListener('click', () => {
-        exibirMensagem('Pedido finalizado! Em breve você poderá acompanhar o status.', '#d4edda', '#155724');
+        const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+        if (carrinho.length === 0) {
+            exibirMensagem('Seu carrinho está vazio!', '#f8d7da', '#721c24');
+            return;
+        }
+
+        const clienteNome = prompt('Digite seu nome:') || 'Cliente anônimo';
+        const clienteEndereco = prompt('Digite seu endereço:') || 'Endereço não informado';
+
+        let pedidos = JSON.parse(localStorage.getItem('pedidosRestaurante')) || [];
+
+        const novoId = Date.now(); // id único pelo timestamp
+        const novoPin = Math.floor(1000 + Math.random() * 9000).toString();
+
+        const novoPedido = {
+            id: novoId,
+            pin: novoPin,
+            cliente: clienteNome,
+            endereco: clienteEndereco,
+            itens: carrinho,
+            status: 'pendente',
+            taxaEntrega: taxaEntrega || 0,
+            data: new Date().toISOString()
+        };
+
+        pedidos.push(novoPedido);
+
+        localStorage.setItem('pedidosRestaurante', JSON.stringify(pedidos));
         localStorage.removeItem('carrinho');
         taxaEntrega = 0;
 
         atualizarContador();
         renderizarCarrinho();
+
+        exibirMensagem(`Pedido finalizado! Número: ${novoId}, PIN: ${novoPin}`, '#d4edda', '#155724');
     });
 
     atualizarContador();

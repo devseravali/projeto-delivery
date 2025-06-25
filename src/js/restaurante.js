@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const pedidosContainer = document.getElementById('pedidos-container');
   
-    let pedidos = JSON.parse(localStorage.getItem('pedidosRestaurante')) || [];
+       let pedidos = JSON.parse(localStorage.getItem('pedidosRestaurante')) || [];
   
     function renderizarPedidos() {
       pedidosContainer.innerHTML = '';
@@ -17,13 +17,17 @@ document.addEventListener('DOMContentLoaded', () => {
   
         div.innerHTML = `
           <p><strong>Pedido #${pedido.id}</strong></p>
+          <p>Cliente: ${pedido.cliente || 'Desconhecido'}</p>
+          <p>Endereço: ${pedido.endereco || 'Não informado'}</p>
+          <p>PIN: ${pedido.pin || 'Não informado'}</p>
           <p>Status: <span class="status-pedido ${pedido.status}">${pedido.status}</span></p>
           <div class="itens-pedido">
             ${pedido.itens.map(i => `<p>${i.quantidade} x ${i.nome}</p>`).join('')}
           </div>
           <div class="acoes-pedido">
-            ${pedido.status === 'pendente' ? `<button class="btn-aceitar" data-id="${pedido.id}">Aceitar</button>` : ''}
-            ${pedido.status === 'preparo' ? `<button class="btn-pronto" data-id="${pedido.id}">Pronto</button>` : ''}
+            ${pedido.status === 'pendente' ? `<button class="btn-aceitar" data-id="${pedido.id}">Aceitar (Em preparo)</button>` : ''}
+            ${pedido.status === 'preparo' ? `<button class="btn-pronto" data-id="${pedido.id}">Pedido Pronto</button>` : ''}
+            ${pedido.status === 'pronto' ? `<em>Aguardando entrega pelo motoboy</em>` : ''}
           </div>
         `;
   
@@ -33,8 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
   
     pedidosContainer.addEventListener('click', (e) => {
       const btn = e.target;
+      if (!btn.dataset.id) return;
+  
       const id = Number(btn.dataset.id);
-      if (!id) return;
+      if (isNaN(id)) return;
   
       const pedido = pedidos.find(p => p.id === id);
       if (!pedido) return;
@@ -49,21 +55,5 @@ document.addEventListener('DOMContentLoaded', () => {
       renderizarPedidos();
     });
   
-    function receberNovoPedido() {
-      const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-      if (carrinho.length > 0) {
-        const novoPedido = {
-          id: Date.now(),
-          itens: carrinho,
-          status: 'pendente'
-        };
-        pedidos.push(novoPedido);
-        localStorage.setItem('pedidosRestaurante', JSON.stringify(pedidos));
-        localStorage.removeItem('carrinho');
-        renderizarPedidos();
-      }
-    }
-  
     renderizarPedidos();
-    receberNovoPedido();
   });  

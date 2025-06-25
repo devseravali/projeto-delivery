@@ -34,6 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
         btnOnline.style.display = 'none';
         btnOffline.style.display = 'inline-block';
         renderizarPedidos();
+        formPin.style.display = 'none';
+        mensagemPin.textContent = '';
       } else {
         btnOnline.style.display = 'inline-block';
         btnOffline.style.display = 'none';
@@ -44,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   
     function renderizarPedidos() {
+      pedidos = JSON.parse(localStorage.getItem('pedidosRestaurante')) || [];
       listaPedidos.innerHTML = '';
   
       const prontos = pedidos.filter(p => p.status === 'pronto' || p.status === 'entregue');
@@ -71,8 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
   
         listaPedidos.appendChild(li);
       });
-  
-      formPin.style.display = 'none';
     }
   
     formLogin.addEventListener('submit', (e) => {
@@ -103,22 +104,31 @@ document.addEventListener('DOMContentLoaded', () => {
       atualizarNomeMotoboy();
       atualizarStatus();
     });
-    
+  
     listaPedidos.addEventListener('click', (e) => {
-        if (e.target.classList.contains('btn-pin')) {
-            const id = Number(e.target.dataset.id);
-            formPin.dataset.id = id;
-            formPin.style.display = 'block';
-        }
-        if(pedido) {
-            pedido.status = 'concluido';
-            localStorage.setItem('pedidosRestaurante', JSON.stringify(pedidos));
-            renderizarPedidos();
-            mensagemPin.textContent = 'Pedido concluído!';
-            mensagemPin.style.color = 'green';
-        }
+      const btn = e.target;
+      const id = Number(btn.dataset.id);
+      if (!id) return;
+  
+      const pedido = pedidos.find(p => p.id === id);
+      if (!pedido) return;
+  
+      if (btn.classList.contains('btn-pin')) {
+        formPin.dataset.id = id;
+        formPin.style.display = 'block';
+        mensagemPin.textContent = '';
+      }
+  
+      if (btn.classList.contains('btn-concluir')) {
+        pedido.status = 'concluido';
+        localStorage.setItem('pedidosRestaurante', JSON.stringify(pedidos));
+        renderizarPedidos();
+        mensagemPin.textContent = 'Pedido concluído!';
+        mensagemPin.style.color = 'green';
+        formPin.style.display = 'none';
+      }
     });
-
+  
     formPin.addEventListener('submit', (e) => {
       e.preventDefault();
       const id = Number(formPin.dataset.id);
@@ -131,6 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mensagemPin.textContent = 'Entrega confirmada com sucesso!';
         mensagemPin.style.color = 'green';
         renderizarPedidos();
+        formPin.style.display = 'none';
       } else {
         mensagemPin.textContent = 'PIN inválido. Verifique e tente novamente.';
         mensagemPin.style.color = 'red';

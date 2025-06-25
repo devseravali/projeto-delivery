@@ -6,8 +6,8 @@ document.body.classList.add(temaSalvo);
 botaoTema.addEventListener('click', () => {
     document.body.classList.toggle('escuro');
     document.body.classList.toggle('claro');
-
-    const temaSalvo = document.body.classList.contains('escuro') ? 'escuro' :  'claro';
+    
+    const temaAtual = document.body.classList.contains('escuro') ? 'escuro' :  'claro';
 
     localStorage.setItem('tema', temaAtual);
 });

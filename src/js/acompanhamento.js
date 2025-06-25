@@ -5,14 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const etapas = document.querySelectorAll('.barra-progresso .etapa');
     const mensagemFinal = document.querySelector('.mensagem-final');
 
-    const numeroPedido = Math.floor(1000 + Math.random() * 90000); 
+    const numeroPedido = Math.floor(1000 + Math.random() * 90000);
     const pin = Math.floor(1000 + Math.random() * 9000);
 
     numeroPedidoEl.textContent = ` ${numeroPedido}`;
     pinPedidoEl.textContent = ` ${pin}`;
 
     let minutos = 5;
-    let segundos = 0; 
+    let segundos = 0;
 
     function atualizarTempo() {
         const minStr = String(minutos).padStart(2, '0');
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const timer = setInterval(() => {
         if (minutos === 0 && segundos === 0) {
             clearInterval(timer);
-            clearInterval(etapaInterval); // para o progresso também ao fim do tempo
+            clearInterval(etapaInterval);
             finalizarPedido();
             return;
         }
@@ -38,10 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         atualizarTempo();
-    }, 1000); 
+    }, 1000);
 
-    let etapaAtual = 1; 
-
+    let etapaAtual = 1;
     const etapaInterval = setInterval(() => {
         if (etapaAtual < etapas.length) {
             etapas[etapaAtual].classList.add('ativo');
@@ -49,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             clearInterval(etapaInterval);
         }
-    }, 90000); 
+    }, 90000);
 
     function finalizarPedido() {
         etapas.forEach(etapa => etapa.classList.add('ativo'));

@@ -68,7 +68,9 @@ function mostrarProdutos() {
 function atualizarContador() {
   const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
   let total = 0;
-  carrinho.forEach(item => total += item.quantidade || 1);
+  carrinho.forEach(item => {
+    total += Number(item.quantidade) || 1;
+  });
   contadorCarrinho.textContent = total;
 }
 
@@ -76,11 +78,11 @@ function adicionarAoCarrinho(id = null, nome = null, preco = null) {
   let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 
   const produtoNoCarrinho = carrinho.find(item =>
-    (id && item.id === id) || (nome && item.nome === nome)
+    (id !== null && item.id === id) || (nome !== null && item.nome === nome)
   );
 
   if (produtoNoCarrinho) {
-    produtoNoCarrinho.quantidade += 1;
+    produtoNoCarrinho.quantidade = (Number(produtoNoCarrinho.quantidade) || 1) + 1;
   } else {
     carrinho.push({
       id: id || null,
