@@ -8,12 +8,13 @@
 
     <link rel="stylesheet" href="src/css/reset.css">
     <link rel="stylesheet" href="src/css/variables.css">
-    <link rel="stylesheet" href="src/css/style.css?v=1">
+    <link rel="stylesheet" href="src/css/style.css">
     <link rel="stylesheet" href="src/css/responsivo.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap">
 </head>
 
 <body class="claro">
@@ -27,33 +28,44 @@
                 <li><button id="botao-tema"></button></li>
             </ul>
         </nav>
-    </header>
 
-    <main class="conteudo-principal">
-        <h1 class="titulo-principal">Seu Carrinho</h1>
-        <div id="carrinho-itens" class="grid-produtos"></div>
-        <div id="resumo">
-            <div id="container-produtos">
-                <p>Subtotal: <span id="subtotal">R$0,00</span></p>
-                <p>Taxa de entrega: <span id="taxa">R$0,00</span></p>
-                <p><strong>Total: <span id="total">R$0,00</span></strong></p>
+        <main class="conteudo-principal">
+            <h1 class="titulo-principal">Seu Carrinho</h1>
+            <section id="carrinho-itens" class="grid-produtos">
+            </section>
 
-                <label for="bairro">Informe seu bairro:</label>
-                <input type="text" id="bairro" placeholder="Digite o bairro">
-                <button id="btn-calcular-taxa">Calcular</button>
+            <section id="resumo">
+                <article id="container-produtos">
+                    <p>Subtotal:<span id="subtotal">R$0,00</span></p>
+                    <p>Taxa de entrega: <span id="taxa">R$0,00</span></p>
+                    <p><strong>Total: <span>R$0,00</span></strong></p>
 
-                <p id="mensagem" class="mensagem"></p>
+                    <form id="form-endereco" autocomplete="off">
+                        <fieldset>
+                            <legend>Dados de Entrega</legend>
 
-                <button class="btn-finalizar" id="btn-finalizar">Finalizar Pedido</button>
-            </div>
-        </div>
-    </main>
+                            <label for="nome">Nome completo:</label>
+                            <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required />
 
-    <footer class="site-footer">
-        <small>&copy; 2025 Rainha da Feijoada</small>
-    </footer>
+                            <label for="endereco">Endereço:</label>
+                            <input type="text" id="endereco" name="endereco" placeholder="Rua, número e completo" required />
 
-    <script type="module" src="src/js/carrinho.js"></script>
-</body>
+                            <label for="bairro">Bairro:</label>
+                            <input type="text" id="bairro" name="bairro" placeholder="Digite o bairro" required />
+
+                            <button type="button" id="btn-calcular-taxa" class="btn-calcular-taxa">Calcular Taxa</button>
+                            <p id="mensagem" class="mensagem" role="alert"></p>
+                        </fieldset>
+                    </form>
+                    <button class="btn-finalizar" id="btn-finalizar">Finalizar Pedido</button>
+                </article>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <small>&copy; 2025 Rainha da Feijoada</small>
+          </footer>
+          <script type="module" src="src/js/carrinho.js"></script>
+        </body>
 
 </html>
