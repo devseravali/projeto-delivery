@@ -343,3 +343,40 @@ input[type="password"] {
 #area-motoboy {
     display:none;
 }
+
+#pedidos-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.pedido-card {
+    border: 1px solid var(--cor-secundaria);
+    border-radius: 8px;
+    padding: 1rem;
+    background: var(--cor-fundo);
+}
+
+.pedido-card p {
+    margin: 0.3rem 0;
+}
+
+.status-pedido {
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+.acoes-pedido {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.acoes-pedido button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+}
