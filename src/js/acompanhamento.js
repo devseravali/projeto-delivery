@@ -55,3 +55,14 @@ document.addEventListener('DOMContentLoaded', () => {
         mensagemFinal.classList.remove('none');
     }
 });
+
+const botaoTema = document.getElementById('botao-tema');
+const temaSalvo = localStorage.getItem('tema') || 'claro';
+document.body.classList.add(temaSalvo);
+
+botaoTema.addEventListener('click', () => {
+  document.body.classList.toggle('escuro');
+  document.body.classList.toggle('claro');
+  const temaAtual = document.body.classList.contains('escuro') ? 'escuro' : 'claro';
+  localStorage.setItem('tema', temaAtual);
+});

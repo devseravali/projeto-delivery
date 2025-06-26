@@ -1,23 +1,23 @@
 :root {
-  --cor-fundo: #fef9f0;           
-  --cor-texto: #333333;           
-  --cor-primaria: #ffffff;        
-  --cor-secundaria: #d4af37;      
-  --cor-link: #333333;            
-  --cor-hover-bg: #d4af37;         
-  --cor-hover-texto: #ffffff;      
-  --cor-small: #000000;            
-  --cor-total: #b8860b;            
+  --cor-fundo: #fbf9f3;
+  --cor-texto: #4d4d4d;
+  --cor-primaria: #fafaf7;
+  --cor-secundaria: #d4af37;
+  --cor-link: #565656;
+  --cor-hover-bg: #d0b93f;
+  --cor-hover-texto: #ffffff;
+  --cor-small: #7a7a7a;
+  --cor-total: #c1a019;
 }
 
 body.escuro {
-  --cor-fundo: #1a1a1a;          
-  --cor-texto: #e6e6e6;          
-  --cor-primaria: #2c2c2c;       
-  --cor-secundaria: #d4af37;     
-  --cor-link: #e6e6e6;           
-  --cor-hover-bg: #b8860b;       
-  --cor-hover-texto: #000000;    
-  --cor-small: #aaaaaa;          
-  --cor-total: #d4af37;           
+  --cor-fundo: #1a1a1a;
+  --cor-texto: #e6e6e6;
+  --cor-primaria: #2f2f2f;
+  --cor-secundaria: #d4af37;
+  --cor-link: #e6e6e6;
+  --cor-hover-bg: #b8860b;
+  --cor-hover-texto: #000000;
+  --cor-small: #aaaaaa;
+  --cor-total: #d4af37;
 }

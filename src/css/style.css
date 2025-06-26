@@ -113,7 +113,7 @@ body.escuro #botao-tema::before {
 
 .titulo-principal {
     font-size: 2rem;
-    color: var(--cor-primaria);
+    color: var(--cor-texto);
     font-weight: 600;
 }
 
@@ -297,14 +297,14 @@ body.escuro #botao-tema::before {
     text-align: center;
     position: relative;
     padding: 0.5rem;
-    border-bottom: 3px solid var(--cor-secundaria);
-    color: var(--cor-secundaria);
+    border-bottom: 3px solid var(--cor-small);
+    color: var(--cor-small);
 }
 
 .barra-progresso .etapa.ativo {
     font-weight: 800;
-    border-color: var(--cor-primaria);
-    color: var(--cor-primaria);
+    border-color: var(--cor-small);
+    color: var(--cor-small);
 }
 
 .barra-progresso .etapa::after {
@@ -314,24 +314,24 @@ body.escuro #botao-tema::before {
     left: 50%;
     width: 8px;
     height: 8px;
-    background-color: var(--cor-secundaria);
+    background-color: var(--cor-primaria);
     border-radius: 50%;
     transform: translateX(-50%);
 }
 
 .barra-progresso .etapa.ativo::after {
-    background: var(--cor-primaria);
+    background: var(--cor-secundaria);
 }
 
 h1 {
     font-size: 2rem;
-    color: var(--cor-primaria);
+    color: var(--cor-texto);
     margin-bottom: 1rem;
 }
 
 h2 {
     font-size: 1.4rem;
-    color: var(--cor-secundaria);
+    color: var(--cor-texto);
 }
 
 button {
