@@ -222,7 +222,7 @@ body.escuro #botao-tema::before {
 #resumo strong span {
     font-size: 1.2rem;
     font-weight: 600;
-    color: var(--cor-primaria);
+    color: var(--cor-small);
 }
 
 #form-endereco {

@@ -30,15 +30,10 @@ function criarListaAdicionais(nomeGrupo, adicionais) {
 function mostrarProdutos() {
   const tipoSelecionado = filtroTipo.value;
   const precoMaximo = Number(filtroPreco.value);
-
   gridProdutos.innerHTML = '';
 
   const produtosFiltrados = produtos.filter(produto => {
-    const tipoOk =
-      tipoSelecionado === '' ||
-      tipoSelecionado === 'todos' ||
-      produto.tipo === tipoSelecionado;
-
+    const tipoOk = !tipoSelecionado || tipoSelecionado === 'todos' || produto.tipo === tipoSelecionado;
     const precoOk = produto.preco <= precoMaximo;
     return tipoOk && precoOk;
   });
@@ -67,22 +62,20 @@ function mostrarProdutos() {
 
 function atualizarContador() {
   const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-  let total = 0;
-  carrinho.forEach(item => {
-    total += Number(item.quantidade) || 1;
-  });
+  const total = carrinho.reduce((soma, item) => soma + (item.quantidade || 1), 0);
   contadorCarrinho.textContent = total;
 }
 
 function adicionarAoCarrinho(id = null, nome = null, preco = null) {
   let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 
-  const produtoNoCarrinho = carrinho.find(item =>
-    (id !== null && item.id === id) || (nome !== null && item.nome === nome)
+  const produtoExistente = carrinho.find(item => 
+    (id !== null && item.id === id) || 
+    (nome !== null && item.nome === nome)
   );
 
-  if (produtoNoCarrinho) {
-    produtoNoCarrinho.quantidade = (Number(produtoNoCarrinho.quantidade) || 1) + 1;
+  if (produtoExistente) {
+    produtoExistente.quantidade = (produtoExistente.quantidade || 1) + 1;
   } else {
     carrinho.push({
       id: id || null,
@@ -99,10 +92,11 @@ function adicionarAoCarrinho(id = null, nome = null, preco = null) {
 botaoTema.addEventListener('click', () => {
   document.body.classList.toggle('escuro');
   document.body.classList.toggle('claro');
+  const temaAtual = document.body.classList.contains('escuro') ? 'escuro' : 'claro';
+  localStorage.setItem('tema', temaAtual);
 });
 
 filtroTipo.addEventListener('change', mostrarProdutos);
-
 filtroPreco.addEventListener('input', () => {
   valorPreco.textContent = `R$${filtroPreco.value},00`;
   mostrarProdutos();
@@ -113,21 +107,19 @@ gridProdutos.addEventListener('click', (e) => {
     if (e.target.classList.contains('btn-produto')) {
       const id = Number(e.target.dataset.id);
       adicionarAoCarrinho(id);
+    }
 
-    } else if (e.target.classList.contains('btn-adicional')) {
+    else if (e.target.classList.contains('btn-adicional')) {
       const nome = e.target.dataset.nome;
       const preco = Number(e.target.dataset.preco);
       adicionarAoCarrinho(null, nome, preco);
+    }
 
-    } else if (e.target.classList.contains('btn-toggle-adicionais')) {
+    else if (e.target.classList.contains('btn-toggle-adicionais')) {
       const container = e.target.nextElementSibling;
-      if (container.style.display === 'none') {
-        container.style.display = 'block';
-        e.target.textContent = 'Ocultar Adicionais';
-      } else {
-        container.style.display = 'none';
-        e.target.textContent = 'Mostrar Adicionais';
-      }
+      const visivel = container.style.display === 'block';
+      container.style.display = visivel ? 'none' : 'block';
+      e.target.textContent = visivel ? 'Mostrar Adicionais' : 'Ocultar Adicionais';
     }
   }
 });
