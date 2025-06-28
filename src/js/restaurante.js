@@ -2,7 +2,7 @@ import { produtos } from './produtos.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const pedidosContainer = document.getElementById('pedidos-container');
-  const TAXA_ENTREGA = 7.00; // taxa fixa
+  const TAXA_ENTREGA = 7.00;
 
   function obterPedidos() {
     return JSON.parse(localStorage.getItem('pedidos')) || [];
@@ -23,6 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
     return total;
   }
 
+  function formatarId(id) {
+    return id.toString().padStart(4, '0');
+  }
+
   function renderizarPedidos() {
     const pedidos = obterPedidos();
     pedidosContainer.innerHTML = '';
@@ -35,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     pedidos.forEach(pedido => {
       const {
         id = '----',
+        pin = '----',
         cliente = 'Desconhecido',
         endereco = 'Não informado',
         status = 'pendente',
@@ -54,7 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
       div.className = 'pedido-card';
 
       div.innerHTML = `
-        <p><strong>Pedido #${id}</strong></p>
+        <p><strong>Pedido #${formatarId(id)}</strong></p>
+        <p><strong>PIN:</strong> ${pin}</p>
         <p>Cliente: ${cliente}</p>
         <p>Endereço: ${endereco}</p>
         <p>Status: <span class="status-pedido ${status}">${status}</span></p>
@@ -78,11 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn = e.target;
     if (!btn.dataset.id) return;
 
-    const id = Number(btn.dataset.id);
-    if (isNaN(id)) return;
-
+    const id = btn.dataset.id;
     const pedidos = obterPedidos();
-    const pedido = pedidos.find(p => p.id === id);
+    const pedido = pedidos.find(p => p.id.toString() === id);
     if (!pedido) return;
 
     if (btn.classList.contains('btn-aceitar')) {

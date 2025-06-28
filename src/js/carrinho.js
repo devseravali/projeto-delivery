@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const taxaEntregaSpan = document.getElementById('taxa');
   const totalSpan = document.querySelector('#resumo strong span');
   const btnFinalizar = document.getElementById('btn-finalizar');
-  const inputNome = document.getElementById('input-nome');      
-  const inputEndereco = document.getElementById('input-endereco'); 
+  const inputNome = document.getElementById('input-nome');
+  const inputEndereco = document.getElementById('input-endereco');
 
   let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
   let taxaEntrega = parseFloat(localStorage.getItem('taxaEntrega')) || 7.00;
@@ -105,8 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!nome || !endereco || carrinho.length === 0) return;
 
+    const id = Math.floor(1000 + Math.random() * 9000).toString();
     const pin = Math.floor(1000 + Math.random() * 9000).toString();
-    const id = Date.now();
 
     const novoPedido = {
       id,
@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
     exibirMensagemPIN(pin);
 
     setTimeout(() => {
-      window.location.href = 'acompanhamento.html';
+      window.location.href = 'acompanhamento.html?pin=' + pin;
     }, 3000);
   });
 
