@@ -158,4 +158,3 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('tema', temaAtual);
   });
 });
-
