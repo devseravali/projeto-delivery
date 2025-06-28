@@ -1,169 +1,161 @@
 document.addEventListener('DOMContentLoaded', () => {
   const formLogin = document.getElementById('form-login');
   const inputNomeMotoboy = document.getElementById('input-nome-motoboy');
+  const inputSenhaMotoboy = document.getElementById('input-senha-motoboy');
   const nomeMotoboyExibido = document.getElementById('nome-motoboy-exibido');
 
-  const btnOnline = document.getElementById('btn-online');
-  const btnOffline = document.getElementById('btn-offline');
+  const btnToggleStatus = document.getElementById('btn-toggle-status');
   const statusAtual = document.getElementById('status-atual');
+
   const listaPedidos = document.querySelector('.lista-pedidos');
+  const detalhesClienteContainer = document.getElementById('detalhes-cliente');
+  const nomeClienteSpan = document.getElementById('nome-cliente');
+  const enderecoClienteSpan = document.getElementById('endereco-cliente');
+
   const formPin = document.getElementById('form-pin');
-  const inputPin = document.getElementById('input-id');
+  const inputPin = document.getElementById('input-pin');
   const mensagemPin = document.getElementById('mensagem-pin');
 
-  const TAXA_ENTREGA = 7.00;
+  const areaMotoboy = document.getElementById('area-motoboy');
 
-  let nomeMotoboy = localStorage.getItem('nomeMotoboy') || '';
-  let online = JSON.parse(localStorage.getItem('onlineMotoboy')) || false;
+  let motoboyOnline = false;
+  let motoboyNome = '';
+  let pedidosMotoboy = [];
 
-  let pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+  areaMotoboy.style.display = 'none';
+  detalhesClienteContainer.style.display = 'none';
 
-  function atualizarNomeMotoboy() {
-    if (nomeMotoboy) {
-      nomeMotoboyExibido.textContent = `Motoboy: ${nomeMotoboy}`;
+  formLogin.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const nome = inputNomeMotoboy.value.trim();
+    const senha = inputSenhaMotoboy.value.trim();
+    if (nome && senha) {
+      motoboyNome = nome;
+      nomeMotoboyExibido.textContent = `Bem-vindo, ${nome}`;
+      areaMotoboy.style.display = 'block';
       formLogin.style.display = 'none';
-      document.getElementById('area-motoboy').style.display = 'block';
-    } else {
-      nomeMotoboyExibido.textContent = '';
-      formLogin.style.display = 'block';
-      document.getElementById('area-motoboy').style.display = 'none';
+      setStatusOffline();
     }
+  });
+
+  btnToggleStatus.addEventListener('click', () => {
+    if (motoboyOnline) {
+      setStatusOffline();
+    } else {
+      setStatusOnline();
+    }
+  });
+
+  function setStatusOnline() {
+    motoboyOnline = true;
+    statusAtual.textContent = 'Status: Online';
+    btnToggleStatus.textContent = 'Offline';
+    carregarPedidosMotoboy();
   }
 
-  function atualizarStatus() {
-    statusAtual.textContent = `Status: ${online ? 'Online' : 'Offline'}`;
-    if (online) {
-      btnOnline.style.display = 'none';
-      btnOffline.style.display = 'inline-block';
-      renderizarPedidos();
-      formPin.style.display = 'none';
-      mensagemPin.textContent = '';
-    } else {
-      btnOnline.style.display = 'inline-block';
-      btnOffline.style.display = 'none';
-      listaPedidos.innerHTML = '';
-      formPin.style.display = 'none';
-      mensagemPin.textContent = '';
-    }
-  }
-
-  function renderizarPedidos() {
-    pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+  function setStatusOffline() {
+    motoboyOnline = false;
+    statusAtual.textContent = 'Status: Offline';
+    btnToggleStatus.textContent = 'Online';
     listaPedidos.innerHTML = '';
+    detalhesClienteContainer.style.display = 'none';
+  }
 
-    const prontos = pedidos.filter(p => p.status === 'pronto' || p.status === 'entregue');
+  function carregarPedidosMotoboy() {
+    const todosPedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+    pedidosMotoboy = todosPedidos.filter(p => p.status === 'pronto' && p.motoboy === motoboyNome);
 
-    if (prontos.length === 0) {
-      listaPedidos.innerHTML = '<li>Nenhum pedido pronto para entrega.</li>';
-      formPin.style.display = 'none';
+    if (pedidosMotoboy.length === 0) {
+      const pedidosDisponiveis = todosPedidos.filter(p => p.status === 'pronto' && !p.motoboy);
+      pedidosMotoboy = pedidosDisponiveis.slice(0, 2);
+      pedidosMotoboy.forEach(p => p.motoboy = motoboyNome);
+
+      const pedidosAtualizados = todosPedidos.map(p => {
+        const atribuido = pedidosMotoboy.find(pm => pm.id === p.id);
+        return atribuido ? atribuido : p;
+      });
+
+      localStorage.setItem('pedidos', JSON.stringify(pedidosAtualizados));
+    } else if (pedidosMotoboy.length > 2) {
+      pedidosMotoboy = pedidosMotoboy.slice(0, 2);
+    }
+
+    renderizarListaPedidos();
+  }
+
+  function renderizarListaPedidos() {
+    listaPedidos.innerHTML = '';
+    detalhesClienteContainer.style.display = 'none';
+
+    if (pedidosMotoboy.length === 0) {
+      listaPedidos.innerHTML = '<li>Nenhum pedido disponível.</li>';
       return;
     }
 
-    prontos.forEach(pedido => {
+    pedidosMotoboy.forEach((pedido, index) => {
       const li = document.createElement('li');
-      li.innerHTML = `
-        <strong>Pedido #${pedido.id}</strong><br>
-        Cliente: ${pedido.cliente}<br>
-        Endereço: ${pedido.endereco}<br>
-        Status: ${pedido.status}<br>
-        <strong>Taxa de entrega: R$ ${TAXA_ENTREGA.toFixed(2)}</strong><br>
-      `;
+      li.textContent = `Pedido #${pedido.id}`;
+      li.style.cursor = 'pointer';
+      li.dataset.index = index;
 
-      if (pedido.status === 'pronto') {
-        li.innerHTML += `<button class="btn-pin" data-id="${pedido.id}">Marcar Entregue (PIN)</button>`;
-      } else if (pedido.status === 'entregue') {
-        li.innerHTML += `<button class="btn-concluir" data-id="${pedido.id}">Concluir</button>`;
-      }
+      li.addEventListener('click', () => {
+        Array.from(listaPedidos.children).forEach(child => child.classList.remove('selecionado'));
+        li.classList.add('selecionado');
+
+        const nomeCliente = pedido.cliente || pedido.nomeCliente || '';
+        const enderecoCliente = pedido.endereco || pedido.enderecoCliente || '';
+
+        nomeClienteSpan.textContent = nomeCliente;
+        enderecoClienteSpan.textContent = enderecoCliente;
+        detalhesClienteContainer.style.display = 'block';
+      });
 
       listaPedidos.appendChild(li);
     });
   }
 
-  formLogin.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const nome = inputNomeMotoboy.value.trim();
-    if (nome) {
-      nomeMotoboy = nome;
-      localStorage.setItem('nomeMotoboy', nomeMotoboy);
-      atualizarNomeMotoboy();
-    }
-  });
-
-  btnOnline.addEventListener('click', () => {
-    if (!nomeMotoboy) {
-      alert('Por favor, faça login antes de ficar online.');
-      return;
-    }
-    online = true;
-    localStorage.setItem('onlineMotoboy', true);
-    atualizarStatus();
-  });
-
-  btnOffline.addEventListener('click', () => {
-    online = false;
-    localStorage.removeItem('onlineMotoboy');
-    nomeMotoboy = '';
-    localStorage.removeItem('nomeMotoboy');
-    atualizarNomeMotoboy();
-    atualizarStatus();
-  });
-
-  listaPedidos.addEventListener('click', (e) => {
-    const btn = e.target;
-    const id = Number(btn.dataset.id);
-    if (!id) return;
-
-    const pedido = pedidos.find(p => p.id === id);
-    if (!pedido) return;
-
-    if (btn.classList.contains('btn-pin')) {
-      formPin.dataset.id = id;
-      formPin.style.display = 'block';
-      mensagemPin.textContent = '';
-    }
-
-    if (btn.classList.contains('btn-concluir')) {
-      pedido.status = 'concluido';
-      localStorage.setItem('pedidos', JSON.stringify(pedidos));
-      renderizarPedidos();
-      mensagemPin.textContent = 'Pedido concluído!';
-      mensagemPin.style.color = 'green';
-      formPin.style.display = 'none';
-    }
-  });
-
   formPin.addEventListener('submit', (e) => {
     e.preventDefault();
-    const id = Number(formPin.dataset.id);
     const pinDigitado = inputPin.value.trim();
+    if (!pinDigitado) return;
 
-    const pedido = pedidos.find(p => p.id === id);
-    if (pedido && pedido.pin === pinDigitado) {
-      pedido.status = 'entregue';
-      localStorage.setItem('pedidos', JSON.stringify(pedidos));
-      mensagemPin.textContent = 'Entrega confirmada com sucesso!';
-      mensagemPin.style.color = 'green';
-      renderizarPedidos();
-      formPin.style.display = 'none';
-    } else {
-      mensagemPin.textContent = 'PIN inválido. Verifique e tente novamente.';
-      mensagemPin.style.color = 'red';
+    const todosPedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+    const pedido = todosPedidos.find(p =>
+      p.pin === pinDigitado && p.status === 'pronto' && p.motoboy === motoboyNome
+    );
+
+    if (!pedido) {
+      exibirMensagem('PIN inválido ou pedido não disponível para entrega.', false);
+      return;
     }
 
+    pedido.status = 'entregue';
+    localStorage.setItem('pedidos', JSON.stringify(todosPedidos));
+    exibirMensagem(`Pedido #${pedido.id} entregue com sucesso!`, true);
+    carregarPedidosMotoboy();
     inputPin.value = '';
+    detalhesClienteContainer.style.display = 'none';
   });
 
-  atualizarNomeMotoboy();
-  atualizarStatus();
+  function exibirMensagem(msg, sucesso = true) {
+    mensagemPin.textContent = msg;
+    mensagemPin.style.color = sucesso ? 'green' : 'red';
+    mensagemPin.style.display = 'block';
+    setTimeout(() => {
+      mensagemPin.textContent = '';
+      mensagemPin.style.display = 'none';
+    }, 4000);
+  }
+
+  const botaoTema = document.getElementById('botao-tema');
+  const temaSalvo = localStorage.getItem('tema') || 'claro';
+  document.body.classList.add(temaSalvo);
+
+  botaoTema.addEventListener('click', () => {
+    document.body.classList.toggle('escuro');
+    document.body.classList.toggle('claro');
+    const temaAtual = document.body.classList.contains('escuro') ? 'escuro' : 'claro';
+    localStorage.setItem('tema', temaAtual);
+  });
 });
 
-const botaoTema = document.getElementById('botao-tema');
-const temaSalvo = localStorage.getItem('tema') || 'claro';
-document.body.classList.add(temaSalvo);
-
-botaoTema.addEventListener('click', () => {
-  document.body.classList.toggle('escuro');
-  document.body.classList.toggle('claro');
-  const temaAtual = document.body.classList.contains('escuro') ? 'escuro' : 'claro';
-  localStorage.setItem('tema', temaAtual);
-});

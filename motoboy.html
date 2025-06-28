@@ -1,79 +1,85 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tela do Motoboy</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tela do Motoboy</title>
 
-    <link rel="stylesheet" href="src/css/reset.css" />
-    <link rel="stylesheet" href="src/css/variables.css" />
-    <link rel="stylesheet" href="src/css/style.css?v=1" />
-    <link rel="stylesheet" href="src/css/responsivo.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet"
+  <link rel="stylesheet" href="src/css/reset.css" />
+  <link rel="stylesheet" href="src/css/variables.css" />
+  <link rel="stylesheet" href="src/css/style.css?v=1" />
+  <link rel="stylesheet" href="src/css/responsivo.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" />
 </head>
 
 <body class="claro">
-    <header class="site-header">
-        <div class="logo">
-            <a href="index.html" class="logo-link">Rainha da Feijoada</a>
-        </div>
-       <ul>
+  <header class="site-header">
+    <div class="logo">
+      <a href="index.html" class="logo-link">Rainha da Feijoada</a>
+    </div>
+    <nav>
+      <ul>
         <li><button id="botao-tema" aria-label="Alterar tema"></button></li>
-       </ul>
-    </header>
+      </ul>
+    </nav>
+  </header>
 
-    <main class="conteudo-principal">
-        <section>
-            <h1>Motoboy</h1>
+  <main class="conteudo-principal">
+    <section aria-labelledby="titulo-motoboy">
+      <h1 id="titulo-motoboy">Painel do Motoboy</h1>
 
-            <div>
-                <h2>Faça o Login</h2>
-                <form id="form-login">
-                    <label for="input-nome-motoboy">Nome:</label>
-                    <input type="text" id="input-nome-motoboy" required />
-                    <label for="input-senha-motoboy">Senha:</label>
-                    <input type="password" id="input-senha-motoboy" required />
-                    <button type="submit">Entrar</button>
-                </form>
-                <p id="nome-motoboy-exibido"></p>
-            </div>
+      <article aria-labelledby="titulo-login">
+        <h2 id="titulo-login">Login</h2>
+        <form id="form-login">
+          <label for="input-nome-motoboy">Nome:</label>
+          <input type="text" id="input-nome-motoboy" name="nome" required autocomplete="username" />
 
-            <div id="area-motoboy">
-                <div>
-                    <h2>Status</h2>
-                    <button id="btn-online">Online</button>
-                    <button id="btn-offline">Offline</button>
-                    <p id="status-atual">Status: Offline</p>
-                </div>
+          <label for="input-senha-motoboy">Senha:</label>
+          <input type="password" id="input-senha-motoboy" name="senha" required autocomplete="current-password" />
 
-                <div>
-                    <h2>Pedidos</h2>
-                    <ul class="lista-pedidos"></ul>
-                </div>
+          <button type="submit">Entrar</button>
+        </form>
+        <p id="nome-motoboy-exibido" role="status"></p>
+      </article>
 
-                <div>
-                    <h2>Confirmar Entrega</h2>
-                    <form id="form-pin">
-                        <label for="input-pin">Digite o PIN do Cliente:</label>
-                        <input type="text" id="input-id" required />
-                        <button type="submit">Confirmar</button>
-                    </form>
-                    <p class="mensagem" id="mensagem-pin"></p>
-                </div>
-            </div>
-        </section>
-    </main>
+      <section id="area-motoboy" aria-label="Área de pedidos e entregas">
+        <article aria-labelledby="titulo-status">
+          <h2 id="titulo-status">Status</h2>
+          <button id="btn-toggle-status">Online</button>
+          <p id="status-atual">Status: Offline</p>
+        </article>
 
-    <footer class="site-footer">
-        <small>&copy; 2025 Rainha da Feijoada</small>
-    </footer>
+        <article aria-labelledby="titulo-pedidos">
+          <h2 id="titulo-pedidos">Pedidos Prontos</h2>
+          <ul class="lista-pedidos" aria-live="polite"></ul>
 
-    <script src="src/js/motoboy.js"></script>
+          <div id="detalhes-cliente" aria-live="polite">
+            <p><strong>Cliente:</strong> <span id="nome-cliente"></span></p>
+            <p><strong>Endereço:</strong> <span id="endereco-cliente"></span></p>
+          </div>
+        </article>
+
+        <article aria-labelledby="titulo-entrega">
+          <h2 id="titulo-entrega">Confirmar Entrega</h2>
+          <form id="form-pin">
+            <label for="input-pin">Digite o PIN do Cliente:</label>
+            <input type="text" id="input-pin" name="pin" required />
+            <button type="submit">Confirmar</button>
+          </form>
+          <p class="mensagem" id="mensagem-pin" role="alert"></p>
+        </article>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>&copy; 2025 Rainha da Feijoada</small>
+  </footer>
+
+  <script type="module" src="src/js/motoboy.js"></script>
 </body>
-
 </html>
