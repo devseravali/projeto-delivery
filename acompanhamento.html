@@ -1,66 +1,73 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acompanhamento do Pedido</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acompanhamento do Pedido</title>
 
-  <link rel="stylesheet" href="src/css/reset.css">
-  <link rel="stylesheet" href="src/css/variables.css">
-  <link rel="stylesheet" href="src/css/style.css?v=1">
-  <link rel="stylesheet" href="src/css/responsivo.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap">
+  <link rel="stylesheet" href="src/css/reset.css" />
+  <link rel="stylesheet" href="src/css/variables.css" />
+  <link rel="stylesheet" href="src/css/style.css?v=1" />
+  <link rel="stylesheet" href="src/css/responsivo.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
 </head>
 <body class="claro">
-    <header class="site-header">
-      <div class="logo">
-        <a href="index.html" class="logo-link" aria-label="Página inicial">Rainha da Feijoada</a>
-      </div>
+  <header class="site-header">
+    <div class="logo">
+      <a href="index.html" class="logo-link" aria-label="Página inicial">Rainha da Feijoada</a>
+    </div>
 
-        <nav>
-            <ul class="menu-list">
-                <li><a href="index.html">Início</a></li>
-                <li><a href="cardapio.html">Cardápio</a></li>
-                <li><a href="carrinho.html">Carrinho (<span id="contador-carrinho">0</span>)</a></li>
-                <li><button id="botao-tema" aria-label="Alterar tema"></button></li>
-            </ul>
-        </nav>
-    </header>    
+    <nav aria-label="Menu principal">
+      <ul class="menu-list">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="cardapio.html">Cardápio</a></li>
+        <li>
+          <a href="carrinho.html">Carrinho (<span id="contador-carrinho">0</span>)</a>
+        </li>
+        <li>
+          <button id="botao-tema" aria-label="Alterar tema"></button>
+        </li>
+      </ul>
+    </nav>
+  </header>
 
-    <main class="conteudo-principal">
-        <section class="info-pedido">
-            <h1>Acompanhamento do Pedido</h1>
-            <p><strong>Número do Pedido:</strong><span id="numero-pedido"></span></p>
-            <p><strong>PIN:</strong><span id="pin-pedido"></span></p>
-        </section>
+  <main class="conteudo-principal">
+    <section class="info-pedido">
+      <h1>Acompanhamento do Pedido</h1>
+      <p><strong>Número do Pedido:</strong> <span id="numero-pedido"></span></p>
+      <p><strong>PIN:</strong> <span id="pin-pedido"></span></p>
+    </section>
 
-        <section class="status-pedido">
-            <h2>Status do Pedido</h2>
-            <ol class="barra-progresso">
-                <li class="etapa ativo">Recebido</li>
-                <li class="etapa">Pronto</li>
-                <li class="etapa">Saiu para entrega</li>
-                <li class="etapa">Entregue</li>
-            </ol>
-        </section>
+    <section class="status-pedido">
+      <h2>Status do Pedido</h2>
+      <ol class="barra-progresso" role="list">
+        <li class="etapa ativo" aria-current="step">Recebido</li>
+        <li class="etapa">Pronto</li>
+        <li class="etapa">Saiu para entrega</li>
+        <li class="etapa">Entregue</li>
+      </ol>
+    </section>
 
-        <section class="tempo-estimado" aria-labelledby="tempo-titulo">
-            <h2>Tempo Estimado</h2>
-            <p>Seu pedido será entregue em<span id="tempo-pedido"> --:--</span></p>
-        </section>
+    <section class="tempo-estimado" aria-labelledby="tempo-titulo">
+      <h2 id="tempo-titulo">Tempo Estimado</h2>
+      <p>Seu pedido será entregue em <span id="tempo-pedido">--:--</span></p>
+    </section>
 
-        <section class="mensagem-final none">
-            <p>Seu pedido foi entregue com sucesso! Obrigado por escolher a Rainha da Feijoada.</p>
-        </section>
-    </main>
+    <section class="mensagem-final" hidden>
+      <p>Seu pedido foi entregue com sucesso! Obrigado por escolher a Rainha da Feijoada.</p>
+    </section>
+  </main>
 
-    <footer class="site-footer">
-        <small>&copy; 2025 Rainha da Feijoada</small>
-    </footer>
+  <footer class="site-footer">
+    <small>&copy; 2025 Rainha da Feijoada</small>
+  </footer>
 
-    <script src="src/js/acompanhamento.js"></script>
+  <script type="module" src="src/js/acompanhamento.js"></script>
 </body>
 </html>
