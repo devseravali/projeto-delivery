@@ -352,7 +352,7 @@ button:hover {
 
 #status-atual {
     font-size: 1.2rem;
-    color: var(--cor-primaria);
+    color: var(--cor-small);
 }
 
 form {
